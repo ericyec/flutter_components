@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/screens.dart';
+import 'package:flutter_components/router/app_routes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,17 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      //home: const CardScreen(),
-      initialRoute: '/home',
-      routes: {
-        '/home': (BuildContext context) => const HomeScreen(),
-        '/listview1': (BuildContext context) => Listview1Screen(),
-        '/listview2': (BuildContext context) => Listview2Screen(),
-        '/alert': (BuildContext context) => const AlertScreen(),
-        '/card': (BuildContext context) => const CardScreen(),
-      },
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        //home: const CardScreen(),
+        initialRoute: AppRoutes.initialRoute,
+        routes: AppRoutes.getAppRoutes(),
+        // En caso que la ruta no exista en la llamada entra
+        // aquí y determina a que ruta de las que existe entrara
+        onGenerateRoute:
+            //(settings) => AppRoutes.onGenerateRoute(settings)
+            // O tambien como sigue
+            AppRoutes.onGenerateRoute);
   }
 }
