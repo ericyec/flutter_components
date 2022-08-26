@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_components/router/app_routes.dart';
+import 'package:flutter_components/themes/app_theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute:
             //(settings) => AppRoutes.onGenerateRoute(settings)
             // O tambien como sigue
-            AppRoutes.onGenerateRoute);
+            AppRoutes.onGenerateRoute,
+        theme: AppTheme.lightTheme);
   }
 }
