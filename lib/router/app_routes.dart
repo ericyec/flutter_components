@@ -48,6 +48,11 @@ class AppRoutes {
         name: 'Text Inputs',
         screen: const InputsScreen(),
         icon: Icons.input_rounded),
+    MenuOption(
+        route: '/lisviewBuilder',
+        name: 'List View Builder',
+        screen: const ListviewBuilderScreen(),
+        icon: Icons.list),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
