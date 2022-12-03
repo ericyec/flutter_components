@@ -12,9 +12,11 @@ class CustomCardTypeB extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       elevation: 10,
-      shadowColor: AppTheme.primary.withOpacity(0.25),
+      shadowColor: AppTheme.primary.withOpacity(0.5),
       child: Column(children: [
         FadeInImage(
           image: NetworkImage(imageURL),
@@ -27,7 +29,7 @@ class CustomCardTypeB extends StatelessWidget {
         if (name != null)
           Container(
             alignment: AlignmentDirectional.centerEnd,
-            padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
+            padding: const EdgeInsets.only(right: 15, top: 15, bottom: 10),
             child: Text(name!),
           )
       ]),

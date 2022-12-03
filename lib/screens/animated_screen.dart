@@ -34,12 +34,15 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
       ),
       body: Center(
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 400),
           curve: Curves.easeOutCubic,
           width: _width,
           height: _height,
           //color: Colors.red, // Genera error
-          decoration: BoxDecoration(color: _color, borderRadius: _borderRadius),
+          decoration: BoxDecoration(
+            color: _color,
+            borderRadius: _borderRadius,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

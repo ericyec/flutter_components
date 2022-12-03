@@ -10,21 +10,23 @@ class HomeScreen extends StatelessWidget {
     final menuOpts = AppRoutes.menuOptions;
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Componentes de Flutter'),
+      appBar: AppBar(
+        title: const Text('Componentes de Flutter'),
+      ),
+      body: ListView.separated(
+        itemCount: menuOpts.length,
+        itemBuilder: (context, i) => ListTile(
+          title: Text(menuOpts[i].name),
+          leading: Icon(
+            menuOpts[i].icon,
+            color: AppTheme.primary,
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, menuOpts[i].route);
+          },
         ),
-        body: ListView.separated(
-            itemBuilder: (context, index) => ListTile(
-                  title: Text(menuOpts[index].name),
-                  leading: Icon(
-                    menuOpts[index].icon,
-                    color: AppTheme.primary,
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, menuOpts[index].route);
-                  },
-                ),
-            separatorBuilder: (_, __) => const Divider(),
-            itemCount: AppRoutes.menuOptions.length));
+        separatorBuilder: (_, __) => const Divider(),
+      ),
+    );
   }
 }

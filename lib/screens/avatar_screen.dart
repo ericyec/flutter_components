@@ -13,7 +13,7 @@ class AvatarScreen extends StatelessWidget {
             margin: const EdgeInsets.only(right: 5),
             child: CircleAvatar(
               backgroundColor: Colors.blueGrey.shade900,
-              child: const Text('SL'),
+              child: const Text('MR'),
             ),
           )
         ],

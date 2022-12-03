@@ -11,18 +11,25 @@ class Listview2Screen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Listview 2'),
         elevation: 0,
-        backgroundColor: Colors.indigo,
+        //backgroundColor: Colors.indigo,
       ),
       body: ListView.separated(
         itemCount: options.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: const Icon(
+              Icons.sports_basketball_rounded,
+
+              ///color: Colors.indigo,
+            ),
             title: Text(options[index]),
             trailing: const Icon(
               Icons.arrow_forward_ios_outlined,
-              color: Colors.indigo,
+              //color: Colors.indigo,
             ),
-            onTap: () {},
+            onTap: () {
+              print(options[index]);
+            },
           );
         },
         separatorBuilder: (_, __) => const Divider(),

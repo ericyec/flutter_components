@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
         routes: AppRoutes.getAppRoutes(),
         // En caso que la ruta no exista en la llamada entra
         // aquí y determina a que ruta de las que existe entrara
-        onGenerateRoute:
-            //(settings) => AppRoutes.onGenerateRoute(settings)
-            // O tambien como sigue
-            AppRoutes.onGenerateRoute,
+        onGenerateRoute: (settings) => AppRoutes.onGenerateRoute(settings),
+        // O tambien como sigue, esto ya que cuando se va a pasar solo un
+        // argumento a la funcion se hace ovio y se coloca:
+        //AppRoutes.onGenerateRoute,
         theme: AppTheme.lightTheme);
   }
 }
