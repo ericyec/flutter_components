@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_components/models/models.dart';
+import 'package:flutter_components/screens/slider_screen.dart';
 
 import '../screens/screens.dart';
 
@@ -48,6 +49,11 @@ class AppRoutes {
         name: 'Text Inputs',
         screen: const InputsScreen(),
         icon: Icons.input_rounded),
+    MenuOption(
+        route: '/slider',
+        name: 'Slider & Checks',
+        screen: const SliderScreen(),
+        icon: Icons.slideshow),
     MenuOption(
         route: '/lisviewBuilder',
         name: 'List View Builder',

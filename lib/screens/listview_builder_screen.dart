@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_components/themes/app_theme.dart';
 
@@ -42,13 +44,39 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
 
     isLoading = false;
     setState(() {});
+
+    // Si no esta al final sale y no mueve las imagenes
+    if (scrollController.position.pixels + 100 <=
+        scrollController.position.maxScrollExtent) return;
+
+    // Mueve las imagenes en caso de estar serca del final
+    scrollController.animateTo(
+      scrollController.position.pixels + 120,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 
   void addNewElementsToList() {
     final lastId = images.last;
     images.addAll([1, 2, 3, 4, 5].map((e) => lastId + e));
-    print(images);
     setState(() {});
+  }
+
+  // Funcion llamada al hacer el refresh del screen
+  Future<void> onRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final lastId = images.last;
+    images.clear();
+    images.add(lastId + 1);
+    addNewElementsToList();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    scrollController.removeListener(() {});
+    super.dispose();
   }
 
   @override
@@ -63,19 +91,23 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
       removeBottom: true,
       child: Stack(
         children: [
-          ListView.builder(
-              controller: scrollController,
-              itemCount: images.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeInImage(
-                    width: double.infinity, // hace que ocupe todo el ancho
-                    height: 300,
-                    fit: BoxFit.cover,
-                    placeholder:
-                        const AssetImage('assets/images/jar-loading.gif'),
-                    image: NetworkImage(
-                        'https://picsum.photos/500/300?image=${images[index]}'));
-              }),
+          RefreshIndicator(
+            onRefresh: onRefresh,
+            color: AppTheme.primary,
+            child: ListView.builder(
+                controller: scrollController,
+                itemCount: images.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return FadeInImage(
+                      width: double.infinity, // hace que ocupe todo el ancho
+                      height: 300,
+                      fit: BoxFit.cover,
+                      placeholder:
+                          const AssetImage('assets/images/jar-loading.gif'),
+                      image: NetworkImage(
+                          'https://picsum.photos/500/300?image=${images[index]}'));
+                }),
+          ),
           if (isLoading)
             Positioned(
                 bottom: 40,
@@ -99,7 +131,9 @@ class _LoadingIcon extends StatelessWidget {
       width: 60,
       height: 60,
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9), shape: BoxShape.circle),
+        color: Colors.white.withOpacity(0.9),
+        shape: BoxShape.circle,
+      ),
       child: const CircularProgressIndicator(
         color: AppTheme.primary,
       ),
